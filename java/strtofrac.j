@@ -2,8 +2,8 @@ public static int strtofrac(char[] buffer, int radix) {
 
     int retval;
 
-    float value;
-    float denom;
+    double value;
+    double denom;
 
     int i;
     int digit;
