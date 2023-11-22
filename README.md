@@ -65,7 +65,7 @@ To start off, focus your attention on just writing the Java code.
         1. Remove the call to read_s(buffer)
 
 
-   1. Review the slides on conversion between bases, as well as the 5-binary-addition assignment.
+   1. Review the slides on conversion between bases, as well as the 25-binary-addition assignment.
 
    1. Use the pseudo code provided on the slides, also presented here, to write the following two methods:
       1. public static int whole2bin(int whole);
@@ -129,7 +129,7 @@ To start off, focus your attention on just writing the Java code.
       "make validate" to validate your final submission
       ```
 
-### Task 1: Write your three methods in JAVA.
+### Task 1: Write your three methods in Java.
    1. Change your working directory to the "java" subdirectory.
    1. Create the file the strtol.j to include your nextInt.j code.
    1. Refactor your `nextInt` method to be `strtol`.
@@ -157,7 +157,7 @@ To start off, focus your attention on just writing the Java code.
       git tag -f java_code   # To move your tag after you discovered...
       ```
 
-### Task 2: Rewrite your three methods using the JAVA-TAC style.
+### Task 2: Rewrite your three methods using the Java-TAC style.
    1. Change your working directory to the "java_tac" subdirectory.
    1. Create the file strtol.j to include your nextInt.j code.
    1. Refactor your `nextInt` method to be `strtol`.
@@ -223,10 +223,10 @@ As part of Task 3, you need to ensure that your MIPS subroutines confirm to the 
 
              # // Code
 
-             # Marshal return argument
+             # Marshal return value
              # Restore S registers
              jr $ra
-    ```
+     ```
     
   1. Subroutine Invocation:
      ```java
@@ -244,17 +244,17 @@ As part of Task 3, you need to ensure that your MIPS subroutines confirm to the 
 
            # Restore special purpose registers
            # Restore T registers
-           # Demarshal argument
+           # Demarshal return value
      ```
 
      You should already be well acquainted with how to marshal and demarshal arguments.  To save and restore registers, you can use the `push` and `pop` macros included in the "macros/stack.s" file.  You may also use the following macros:
 
-      - push_t_registers
-      - pop_t_registers
-      - push_s_registers
-      - pop_s_registers  
+      - push_t_registers()
+      - pop_t_registers()
+      - push_s_registers()
+      - pop_s_registers()
 
-### Task 3. Transliterate your JAVA-TAC code int MIPS
+### Task 3. Transliterate your Java-TAC code int MIPS
 
    1. Change your working directory to the "mips" subdirectory.
    1. Create the file strtol.s to include your nextInt.s code.
@@ -271,7 +271,36 @@ As part of Task 3, you need to ensure that your MIPS subroutines confirm to the 
 
    1. Include the following code into fractional2bin.s
       ```mips
-
+      
+             .globl value_of_max
+              
+      value_of_max: nop               #  public static int value_of_max(int       number) {
+              # t0: number
+              # t1: max               # int max;
+              # t2: i                 # int i;
+              # s0: 8                 # int _8;
+              # s1: 10                # int _10;
+            
+              push_s_registers()      # Save S registers
+              move $t0, $a0           # Demarshal input arguments
+            
+              li $t1, 10              # max = 10;
+              li $t2, 0               # i=0;
+              li $s0, 8               # _8 = 8;
+              li $s1, 10              # _10 = 10;
+            
+      loop2:  blt $t0, $t1, done2     # for (; number >= max ;) {
+                bgt $t2, $s0, loop2   #    if( i > _8) break loop2;
+                mul $t1, $t1, $s1     #    max = max * _10;
+                addi $t2, $t2, 1      #    i++;
+              b loop2                 #    continue loop2;
+                                      # }
+      done2:  nop                     # ;
+                                      # return max;
+              move $v0, $t1           # Marshal output value
+              pop_s_registers()       # Restore S registers                          
+              jr $ra
+                                      # }
       ```
 
    1. Consider the following code equivalents for use in your program:
