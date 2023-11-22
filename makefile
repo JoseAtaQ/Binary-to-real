@@ -45,6 +45,7 @@ test_java: $(J_SRC)
 	@java_subroutine -L '*.j' -S binaryReal $(ARG_CASE3)
 	@echo "Correct V0:" $(RESULT_CASE3)
 	@echo
+	@echo $(OUTPUT_CASE4) "<- Correct output"
 	@java_subroutine -L '*.j' -S binaryReal $(ARG_CASE4)
 	@echo "Correct V0:" $(RESULT_CASE4)
 	@echo

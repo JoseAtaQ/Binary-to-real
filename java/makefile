@@ -29,6 +29,8 @@ test: tags number_commits
 	@echo \"make test_mips\" to test your current version of binaryReal.s
 	@echo \"make final\" to test all your final versions of binaryReal.\*
 	@echo \"make validate\" to validate your final submission
+	@echo 
+	@echo Make sure you are in the correct directory when you type the above commands
 
 test_java: $(J_SRC)
 	@echo $(OUTPUT_CASE1) "<- Correct output"
@@ -43,6 +45,7 @@ test_java: $(J_SRC)
 	@java_subroutine -L '*.j' -S binaryReal $(ARG_CASE3)
 	@echo "Correct V0:" $(RESULT_CASE3)
 	@echo
+	@echo $(OUTPUT_CASE4) "<- Correct output"
 	@java_subroutine -L '*.j' -S binaryReal $(ARG_CASE4)
 	@echo "Correct V0:" $(RESULT_CASE4)
 	@echo
@@ -92,7 +95,7 @@ validate: tags number_commits
 	-make -k final > validation.tmp 2>&1
 	@mv validation.tmp validation.output
 	@git add validation.output
-	@git commit -m 'Auto-commit: validation step' validation.output
+	@git commit -m 'Auto-commit: validation step' validation.output >/dev/null 2>&1 
 	@echo Validation File has been committed if there were changes
 
 
