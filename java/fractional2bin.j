@@ -1,14 +1,16 @@
 public static int fractional2bin(int fractional, int max_bits){
-	
+	int max;
+   int number;
+
 	max = 10 ** stringlength(fractional);
  	number = fractional;
  	while (number != 0 ) {
-    	number = number * 2 
+    	number = number * 2; 
      	if ( number > max ) {
-        	emit 1
-        	number = number - max
+        	emit 1;
+        	number = number - max;
      	} else {
-        	emit 0
+        	emit 0;
      	}
 	}
 }
