@@ -3,7 +3,7 @@ public static int whole2bin(int whole){
 	int number;
 	int i = 0;
 	int count = 0;
-	int result = 0;
+	int elem = 0;
 
 	number = whole;
 	while (number != 0) {
@@ -13,14 +13,16 @@ public static int whole2bin(int whole){
 	}//end while
 
 	//pop_all()
-	/*for (i = 0; i <= count; i++){
-		result = mips.pop();
+	for (i = 0; i < count; i++){
+		elem = mips.pop();//stack is empty
+
+
 	}
-	*/
-	while (count > 0){
+	
+	/*while (count > 0){
 		result = mips.pop();
 		count --;
 		
-	}
-	return result;
+	}*/
+	return elem;
 }//end whole2bin
