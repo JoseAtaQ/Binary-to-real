@@ -14,9 +14,9 @@ public static int whole2bin(int whole){
 
 	//pop_all()
 	for (i = 0; i < count; i++){
-		elem = mips.pop();//stack is empty
-
-
+		elem = mips.pop();
+		mips.print_d(elem);
+		
 	}
 	
 	/*while (count > 0){
@@ -24,5 +24,5 @@ public static int whole2bin(int whole){
 		count --;
 		
 	}*/
-	return elem;
+	return 0;
 }//end whole2bin
