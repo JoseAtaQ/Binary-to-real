@@ -18,6 +18,6 @@ public static int whole2bin(int whole){
 		mips.print_d(elem);
 		
 	}//end for
-	mips.print_s("\n");
+	
 	return 0;
 }//end whole2bin
