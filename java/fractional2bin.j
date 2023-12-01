@@ -18,7 +18,7 @@ public static int fractional2bin(int fractional, int max_bits){
         	mips.print_d(0);
      	}
 	}
-   mips.print_s("\n");
+   
    return 0;
 }
 
