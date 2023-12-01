@@ -6,10 +6,10 @@ public static int whole2bin(int whole){
 	int elem = 0;
 
 	number = whole;
-	while (number != 0) {
-  		mips.push(number % 2);
+	for (count = 0; number != 0; count ++) {
+		elem = number % 2;
   		number = number / 2;
-  		count ++;
+  		mips.push(elem);
 	}//end while
 
 	//pop_all()
@@ -18,11 +18,6 @@ public static int whole2bin(int whole){
 		mips.print_d(elem);
 		
 	}
-	
-	/*while (count > 0){
-		result = mips.pop();
-		count --;
-		
-	}*/
+	mips.print_s("\n");
 	return 0;
 }//end whole2bin
