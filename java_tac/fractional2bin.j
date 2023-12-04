@@ -13,18 +13,22 @@ public static int fractional2bin(int fractional, int max_bits){
          number = fractional;
 
          cnt = 0;
-loop1:   for(; number!= 0 ;) {
+loop1:   ;
+         for(; number!= 0 ;) {
             if (cnt >= max_bits) break;
-
+lbreak:     ;
           	number = number * _2;     
            	if (number >= max) {
+int1:          ;
               	mips.print_d(1);
             	number = number - max;
            	} else {
+int2:          ;
               	mips.print_d(0);
            	}
+int3:       ;
             cnt++;
-            continue loop1;
+
       	}//end for
 done1:   ;         
    return 0;
