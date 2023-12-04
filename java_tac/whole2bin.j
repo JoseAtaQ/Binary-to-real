@@ -1,3 +1,4 @@
+
 public static int whole2bin(int whole){
 				// base 10 to binary 
 				int number;
@@ -10,27 +11,30 @@ public static int whole2bin(int whole){
 				_2 = 2;			
 
 				number = whole;
-
 				count = 0;
-loop1:			for (; number != 0;) {
+f_init:			;
+f_loop:			for (; number != 0;) {
+f_body:             ;	
 	        		elem = number % _2;
           			number = number / _2;
           			mips.push(elem);
 
           			count ++;
-          			continue loop1;	
+          			continue f_loop;	
 	        	}//end for
-done1:			;	        	
+f_done:			;	        	
         
 	        	//pop_all()
 				i = 0;
-loop2:	        for (; i < count;){
+f1_init:		;
+f1_loop:	    for (; i < count;){
+f1_body:			;	
 	        		elem = mips.pop();
 	        		mips.print_d(elem);
 	        	
 	        		i++;
-	        		continue loop2;
+	        		continue f1_loop;
 	        	}//end for
-done2:		;	
+f1_done:		;	
 	return 0;
 }//end whole2bin
