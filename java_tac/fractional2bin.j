@@ -17,7 +17,7 @@ loop1:   for(; number!= 0 ;) {
             if (cnt >= max_bits) break;
 
           	number = number * _2;     
-           	if (number > max) {
+           	if (number >= max) {
               	mips.print_d(1);
             	number = number - max;
            	} else {
