@@ -11,7 +11,7 @@ public static int fractional2bin(int fractional, int max_bits){
     	number = number * 2;
       max_bits --;
 
-     	if (number > max) {
+     	if (number >= max) {
         	mips.print_d(1);
       	number = number - max;
      	} else {
