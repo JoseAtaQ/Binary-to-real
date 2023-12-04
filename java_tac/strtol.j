@@ -6,40 +6,33 @@ public static int glyph2int(char glyph, int radix){
             int i = 0;
             int c = 0;
 
-initA:      ;
+
             if (glyph >= 'A'){
-        initF:  ;      
+initF:          ;      
                 if (glyph <= 'F'){
-consA:          ;          
                     c = glyph - 'A' + 10;
                 }
-        forwadF:;       
+       
             }
 forwardA:    ;
-
-inita:      ;         
+      
             if (glyph >= 'a'){
-        initf:  ;      
+initf:          ;      
                 if (glyph <= 'f'){
-consa:          ;                
                     c = glyph - 'a' + 10;
                 }
-        forwadf:;            
+            
             } 
 forwada:    ;
 
-init0:      ;            
+         
             if (glyph >= '0'){
-        init9:  ;      
-                if (glyph <= '9'){
-cons0:          ;                
+                if (glyph <= '9'){                
                     c = glyph - '0';
                 }
-        forwad9:;            
             }
 forwad0:    ;
-
-init:       ;            
+           
             if (c >= radix){
 cons:           ;
                 c = -1;
