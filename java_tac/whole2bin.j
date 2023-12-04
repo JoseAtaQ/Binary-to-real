@@ -2,16 +2,20 @@ public static int whole2bin(int whole){
 				// base 10 to binary 
 				int number;
 				int i = 0;
-				int count = 0;
-				int elem = 0;			
+				int count;
+				int elem = 0;
+				int _2;
+
+				elem = 0;
+				_2 = 2;			
 
 				number = whole;
 				count = 0;
 f_init:			;
 f_loop:			for (; number != 0;) {
 f_body:             ;	
-	        		elem = number % 2;
-          			number = number / 2;
+	        		elem = number % _2;
+          			number = number / _2;
           			mips.push(elem);
 
           			count ++;
