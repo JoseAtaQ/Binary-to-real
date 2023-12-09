@@ -9,7 +9,7 @@ We can represent any real number in any base using sharp notation. Consider the 
 
 ```bash
 10#  198.5
-8#   307.4
+8#   306.4
 16#  C6.8
 2#   1100 0110 . 1000
 ```
