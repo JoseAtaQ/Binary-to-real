@@ -5,14 +5,14 @@
                 .globl value_of_max 
 
                 .include "macros/syscalls.s"    
-                .include "macros/subroutine.s"
                 .include "macros/stack.s"
                 .macro dec(%reg)
                   addi %reg, %reg, -1
                 .end_macro
 
 # public static int fractional2bin(int fractional, int max_bits){      
-		 save_s_registers()
+fractional2bin:
+		 push_s_registers()
 		 move $t0, $a0				# fractional = $t0
 		 move $t1, $a1				# max_bits   = $t1
       	 # int max = $t2; 
@@ -27,13 +27,13 @@
       			#marshal_args
                 move $a0, $t0 			# fractional = $t0
 
-         		save_t_registers				
+         		push_t_registers()				
        			push $ra, $sp, $fp, $gp 
 
        			jal value_of_max  		# max = value_of_max(fractional);
 
        			pop $ra, $sp, $fp, $gp
-                restore_t_registers
+                pop_t_registers()
                 move $t2, $v0			# max = $t2
 
          move $t3, $t0				# number = fractional;
@@ -44,21 +44,19 @@ loop1:  beq $t3, $zero, done		# for(; number!= 0 ;) {
 			blt $t5, $t1, loop1 		# if (cnt >= max_bits) break;
           	mul $t3, $t3, $t4           # number = number * _2;     
            	blt $t3, $t2, alt 			# if (number >= max) {
-              	print_d(1)					# mips.print_d(1);
+              	print_di(1)					# mips.print_d(1);
             	sub $t3, $t3, $t2			# number = number - max;
 alt:           							# } else {
-    			print_d(0) 					# mips.print_d(0);
+    			print_di(0) 				# mips.print_d(0);
            								# }
         	add $t5, $t5, 1    			# cnt++;
         b loop1
 done:   nop   						# }//end for
 		
-		restore_s_registers()         
+		pop_s_registers()         
    		move $v0, $zero				# return 0;
    		jr $ra
 								# }
-								
-
 value_of_max: nop               #  public static int value_of_max(int number) {
         # t0: number
         # t1: max               # int max;

@@ -4,14 +4,14 @@
                 .globl whole2bin
 
                 .include "macros/syscalls.s"    
-                .include "macros/subroutine.s"
                 .include "macros/stack.s"
                 .macro dec(%reg)
                   addi %reg, %reg, -1
                 .end_macro
 
 # public static int whole2bin(int whole){
-				save_s_registers()
+whole2bin:	
+				push_s_registers()
 				# demarshal
 				move $t0, $a0			# whole = $t0
 
@@ -49,7 +49,7 @@ top1:	    	bge $t2, $t3, done1		# for (; i < count;){
 	        	b top1
 done1:			nop
 				
-				restore_s_registers()
+				pop_s_registers()
 
 				move $v0, $zero		# return 0;
 				jr $ra

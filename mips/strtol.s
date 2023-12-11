@@ -5,14 +5,14 @@
                 .globl glyph2int
 
                 .include "macros/syscalls.s"    
-                .include "macros/subroutine.s"
                 .include "macros/stack.s"
                 .macro dec(%reg)
                   addi %reg, %reg, -1
                 .end_macro
 
 #glyph2int(char glyph, int radix){
-                save_s_registers()
+glyph2int:    
+                push_s_registers()
                 # demarshal
                 move $t0, $a0               # $t0 = glyph
                 move $t1, $a1               # $t1 = radix
@@ -40,13 +40,14 @@ top:                                        # do {
         skip:                               #       }
                 nop                         #   } while (false);
 done:
-                restore_s_registers()
+                pop_s_registers()
                 move $v0, $t2               #   return c;
                 jr $ra                      # }// end glyph2int
 
 
 #strtol(char[] buffer, int radix){
-                #save_s_registers()
+strtol:   
+                push_s_registers()
                 #demarshal
                 move $t0, $a0               # $t0 = buffer
                 move $t1, $a1               # $t1 = radix
@@ -59,19 +60,19 @@ done:
                 add $t6, $t0, $t3           #       x = buffer[i]
                 lbu $t4, 0($t6)             #       $t4 = x 
                                             #       int r = 0;
-top:            beq $t4, $zero, done        #       for (; buffer[i] != '\0';){
+top1:            beq $t4, $zero, done1        #       for (; buffer[i] != '\0';){
                 
                     #marshal_args
                     move $a0, $t4
                     move $a1, $t1
 
-                    save_t_registers
+                    push_t_registers
                     push $ra, $sp, $fp, $gp                   
       
                     jal glyph2int           #       value = glyph2int(buffer[i], radix);
 
                     pop $ra, $sp, $fp, $gp
-                    restore_t_registers
+                    pop_t_registers
                     move $t7, $v0           #       value  = $t7
 
                 beq $t7, $t5, done          #       if (value == neg ) break;   
@@ -82,11 +83,11 @@ top:            beq $t4, $zero, done        #       for (; buffer[i] != '\0';){
                 add $t3, $t3, 1             #           i ++;
                 add $t6, $t0, $t3           #       x = buffer[i]
                 lbu $t4, 0($t6)             #
-            b top                           #           continue top;
+            b top1                           #           continue top;
 
-done:       nop
+done1:       nop
             
-            restore_s_registers()
+            pop_s_registers()
 
             move $v0, $t2                   #       return r;
             jr $ra                          # }// end nextInt
