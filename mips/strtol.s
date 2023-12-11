@@ -86,7 +86,7 @@ top:            beq $t4, $zero, done        #       for (; buffer[i] != '\0';){
 
 done:       nop
             
-            restore_s_registers
+            restore_s_registers()
 
             move $v0, $t2                   #       return r;
             jr $ra                          # }// end nextInt
