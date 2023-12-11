@@ -19,59 +19,36 @@
                 li $s1, '0'
                 li $s2, '9'
 
-                li $t1, -1
-                
-public static int glyph2int(char glyph, int radix){
-            // deals with glyphs
-            // converts glyph to digits
+                li $t1, -1                  #       value = -1;
+                                            #
+                read_c()                    #       mips.read_c();
+                move $t2, $v0               #       c = mips.retval();
+                                            #
+top:                                        # do {
+                blt $t2, $s1, done          #       if (c < '0') break;
+                blt $s2, $t2, done          #       if ('9' < c) break;
+                                            #
+                sub $t1, $t2, $s1           #       value = c - '0';
+                                            #
+                blt $t1, $t0, skip          #       if (value >= radix){
+                    li $t1, -1              #           value = -1;
+        skip:                               #       }
+                nop                         #   } while (false);
+done:
+                restore_s_registers()
+                move $v0, $t1               #   return value;
+                jr $ra                      # }// end glyph2int
 
-            int i = 0;
-            int c = 0;
+                #save_s_registers()
+                #demarshal
+                move $t0, $a0
 
+                li $t5, -1                  #       neg = -1;
 
-            if (glyph >= 'A'){
-initF:          ;      
-                if (glyph <= 'F'){
-                    c = glyph - 'A' + 10;
-                }
-       
-            }
-forwardA:    ;
-      
-            if (glyph >= 'a'){
-initf:          ;      
-                if (glyph <= 'f'){
-                    c = glyph - 'a' + 10;
-                }
-            
-            } 
-forwada:    ;
-
-         
-            if (glyph >= '0'){
-                if (glyph <= '9'){                
-                    c = glyph - '0';
-                }
-            }
-forwad0:    ;
-           
-            if (c >= radix){
-cons:           ;
-                c = -1;
-            }
-forwad:     ;        
-            return c;
-
-}
-        
-
-public static int strtol(char[] buffer, int radix){
-            // deals with bunch of glyphs
-            int buffer_length;
-            int i;
-            int r = 0;
-            int value = 0;
-                          
+                li $t2, 0                   #       int value;
+                li $t3, 0                   #       int i = 0;
+                                            #       int r = 0;
+top:            beq $t4                          
 
             i = 0;
 fnit:       ;
