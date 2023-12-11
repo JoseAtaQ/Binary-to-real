@@ -72,9 +72,9 @@ top:            beq $t4, $zero, done        #       for (; buffer[i] != '\0';){
 
                     pop $ra, $sp, $fp, $gp
                     restore_t_registers
-                    move $t7, $v0
+                    move $t7, $v0           #       value  = $t7
 
-                beq $t7, $t5, done          #       if (digit == neg ) break;   
+                beq $t7, $t5, done          #       if (value == neg ) break;   
 
                 mul $t2, $t2, $t1           #           r = r * radix;
                 add $t2, $t2, $t7           #           r = r + value;
