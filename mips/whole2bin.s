@@ -48,6 +48,8 @@ top1:	    	bge $t2, $t3, done1		# for (; i < count;){
 	        		add $t2, $t2, 1 		# i++;
 	        	b top1
 done1:			nop
+				
+				restore_s_registers
 
 				move $v0, $zero		# return 0;
 				jr $ra
