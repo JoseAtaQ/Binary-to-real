@@ -1,7 +1,8 @@
 
 .data                                                
                 .text                
-                .globl fractional2bin 
+                .globl fractional2bin
+                .globl value_of_max 
 
                 .include "macros/syscalls.s"    
                 .include "macros/subroutine.s"
@@ -12,61 +13,78 @@
 
 # public static int fractional2bin(int fractional, int max_bits){      
 		 save_s_registers()
-      	 int max; 
-         int number;
-         int _2;
-         int cnt;     
+		 move $t0, $a0				# fractional = $t0
+		 move $t1, $a1				# max_bits   = $t1
+      	 # int max = $t2; 
+         # int number = $t3;
+         # int _2 = $t4;
+         # int cnt = $t5;     
 
-         _2 = 2;     
+         # Load constants
+         li $t4, 2					# _2 = 2;     
 
-      	//max = 10 ** stringlength(fractional);
-         max = value_of_max(fractional);
-         number = fractional;
+      	# //max = 10 ** stringlength(fractional);
+      			#marshal_args
+                move $a0, $t0 			# fractional = $t0
 
-         cnt = 0;
-loop1:   ;
-         for(; number!= 0 ;) {
-            if (cnt >= max_bits) break;
-lbreak:     ;
-          	number = number * _2;     
-           	if (number >= max) {
-int1:          ;
-              	mips.print_d(1);
-            	number = number - max;
-           	} else {
-int2:          ;
-              	mips.print_d(0);
-           	}
-int3:       ;
-            cnt++;
+         		save_t_registers				
+       			push $ra, $sp, $fp, $gp 
 
-      	}//end for
-done1:   ;         
-   return 0;
-}
+       			jal value_of_max  		# max = value_of_max(fractional);
 
-public static int value_of_max(int number) {
+       			pop $ra, $sp, $fp, $gp
+                restore_t_registers
+                move $t2, $v0			# max = $t2
 
-         int _8;
-         int _10;
+         move $t3, $t0				# number = fractional;
+         li $t5, 0 					# cnt = 0;
 
-         int max;
-         int i;
+loop1:  beq $t3, $zero, done		# for(; number!= 0 ;) {
+            
+			blt $t5, $t1, loop1 		# if (cnt >= max_bits) break;
+          	mul $t3, $t3, $t4           # number = number * _2;     
+           	blt $t3, $t2, alt 			# if (number >= max) {
+              	print_d(1)					# mips.print_d(1);
+            	sub $t3, $t3, $t2			# number = number - max;
+alt:           							# } else {
+    			print_d(0) 					# mips.print_d(0);
+           								# }
+        	add $t5, $t5, 1    			# cnt++;
+        b loop1
+done:   nop   						# }//end for
+		
+		restore_s_registers()         
+   		move $v0, $zero				# return 0;
+   		jr $ra
+								# }
+								
 
-         _8  =  8;
-         _10 = 10;
-
-         max = 10;
-         i   =  0;
-
-loop2:   for (; number >= max ;) {
-            if( i > _8) break loop2;
-            max = max * _10;
-            i++;
-            continue loop2;
-         }//end for
-done2:   ;
-         return max;
-}
+value_of_max: nop               #  public static int value_of_max(int number) {
+        # t0: number
+        # t1: max               # int max;
+        # t2: i                 # int i;
+        # s0: 8                 # int _8;
+        # s1: 10                # int _10;
+      
+        push_s_registers()      # Save S registers
+        move $t0, $a0           # Demarshal input arguments
+      
+        li $t1, 10              # max = 10;
+        li $t2, 0               # i=0;
+        li $s0, 8               # _8 = 8;
+        li $s1, 10              # _10 = 10;
+      
+loop2:  blt $t0, $t1, done2     # for (; number >= max ;) {
+          bgt $t2, $s0, loop2   #    if( i > _8) break loop2;
+          mul $t1, $t1, $s1     #    max = max * _10;
+          addi $t2, $t2, 1      #    i++;
+        b loop2                 #    continue loop2;
+                                # }
+done2:  nop                     # ;
+                                # return max;
+        move $v0, $t1           # Marshal output value
+        pop_s_registers()       # Restore S registers                          
+        jr $ra
+                                # }
 
 
