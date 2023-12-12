@@ -1,0 +1,141 @@
+make[1]: Entering directory '/home/jose_samir/classes/comp122/deliverables/40-exam-mips-JoseAtaQ'
+cd java ; make test_java ; cd ..
+make[2]: Entering directory '/home/jose_samir/classes/comp122/deliverables/40-exam-mips-JoseAtaQ/java'
+2# 10011010010.01101110100111100001101 <- Correct output
+2# 10011010010.01101110100111100001101
+#########################################
+# Above is the output from your program
+#########################################
+
+v0:         10; 0x00 00 00 0A; 0b0000 0000 0000 0000 0000 0000 0000 1010;
+
+Correct V0: 10
+
+2# 1111101011001110.11011110101010110011011 <- Correct output
+2# 1111101011001110.11011110101010110011011
+#########################################
+# Above is the output from your program
+#########################################
+
+v0:         16; 0x00 00 00 10; 0b0000 0000 0000 0000 0000 0000 0001 0000;
+
+Correct V0: 16
+
+2# 1010011100.10001010001111010111000 <- Correct output
+2# 1010011100.10001010001111010111000
+#########################################
+# Above is the output from your program
+#########################################
+
+v0:          8; 0x00 00 00 08; 0b0000 0000 0000 0000 0000 0000 0000 1000;
+
+Correct V0:  8
+
+2# 1010011100.100011 <- Correct output
+2# 1010011100.100011
+#########################################
+# Above is the output from your program
+#########################################
+
+v0:          8; 0x00 00 00 08; 0b0000 0000 0000 0000 0000 0000 0000 1000;
+
+Correct V0:  8
+
+make[2]: Leaving directory '/home/jose_samir/classes/comp122/deliverables/40-exam-mips-JoseAtaQ/java'
+Previous HEAD position was 4965aac fixed
+Switched to branch 'main'
+Your branch is up to date with 'origin/main'.
+cd java_tac ; make test_java ; cd ..
+make[2]: Entering directory '/home/jose_samir/classes/comp122/deliverables/40-exam-mips-JoseAtaQ/java_tac'
+2# 10011010010.01101110100111100001101 <- Correct output
+2# 10011010010.01101110100111100001101
+#########################################
+# Above is the output from your program
+#########################################
+
+v0:         10; 0x00 00 00 0A; 0b0000 0000 0000 0000 0000 0000 0000 1010;
+
+Correct V0: 10
+
+2# 1111101011001110.11011110101010110011011 <- Correct output
+2# 1111101011001110.11011110101010110011011
+#########################################
+# Above is the output from your program
+#########################################
+
+v0:         16; 0x00 00 00 10; 0b0000 0000 0000 0000 0000 0000 0001 0000;
+
+Correct V0: 16
+
+2# 1010011100.10001010001111010111000 <- Correct output
+2# 1010011100.10001010001111010111000
+#########################################
+# Above is the output from your program
+#########################################
+
+v0:          8; 0x00 00 00 08; 0b0000 0000 0000 0000 0000 0000 0000 1000;
+
+Correct V0:  8
+
+2# 1010011100.100011 <- Correct output
+2# 1010011100.100011
+#########################################
+# Above is the output from your program
+#########################################
+
+v0:          8; 0x00 00 00 08; 0b0000 0000 0000 0000 0000 0000 0000 1000;
+
+Correct V0:  8
+
+make[2]: Leaving directory '/home/jose_samir/classes/comp122/deliverables/40-exam-mips-JoseAtaQ/java_tac'
+Previous HEAD position was 09f7ea3 Fixed
+Switched to branch 'main'
+Your branch is up to date with 'origin/main'.
+cd mips ; make test_mips ; cd ..
+make[2]: Entering directory '/home/jose_samir/classes/comp122/deliverables/40-exam-mips-JoseAtaQ/mips'
+2# 10011010010.01101110100111100001101 <- Correct output
+2# -1-1-100-100-10-10-1-10-1-10-10-10-1-1-10-100-10.
+#########################################
+# Above is the output from your program
+#########################################
+
+v0: 1080299934; 0x40 64 11 9E; 0b0100 0000 0110 0100 0001 0001 1001 1110;
+
+Correct V0: 10
+
+2# 1111101011001110.11011110101010110011011 <- Correct output
+2# 10000000000010000000000101101.
+#########################################
+# Above is the output from your program
+#########################################
+
+v0: 1080299940; 0x40 64 11 A4; 0b0100 0000 0110 0100 0001 0001 1010 0100;
+
+Correct V0: 16
+
+2# 1010011100.10001010001111010111000 <- Correct output
+2# 10000000000010000000000101100.
+#########################################
+# Above is the output from your program
+#########################################
+
+v0: -1609956928; 0xA0 0A 01 C0; 0b1010 0000 0000 1010 0000 0001 1100 0000;
+
+Correct V0:  8
+
+2# 1010011100.100011 <- Correct output
+2# 10000000000010000000000101100.
+#########################################
+# Above is the output from your program
+#########################################
+
+v0: -1609956928; 0xA0 0A 01 C0; 0b1010 0000 0000 1010 0000 0001 1100 0000;
+
+Correct V0:  8
+
+make[2]: Leaving directory '/home/jose_samir/classes/comp122/deliverables/40-exam-mips-JoseAtaQ/mips'
+Switched to branch 'main'
+Your branch is up to date with 'origin/main'.
+Already on 'main'
+Your branch is up to date with 'origin/main'.
+make[1]: Leaving directory '/home/jose_samir/classes/comp122/deliverables/40-exam-mips-JoseAtaQ'
